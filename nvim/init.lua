@@ -16,8 +16,6 @@ o.mouse = 'a'
 w.number = true
 w.relativenumber = true
 
-g.chadtree_settings = {theme = { text_colour_set = "nord" }}
-
 -- Open file at last position
 vim.cmd [[
 augroup lastpos
