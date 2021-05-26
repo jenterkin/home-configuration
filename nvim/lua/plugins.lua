@@ -1,6 +1,18 @@
+-- Make sure packer.nvim is installed
+-- On initial install you will be met with an error. Hit enter and `:PackerInstall` will run.
+-- You will still have to manually run `:PackerCompile`
+local fn = vim.fn
+local fresh_install = false
+local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
+
+if fn.empty(fn.glob(install_path)) > 0 then
+    fresh_install = true
+    fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
+end
+
 vim.cmd [[packadd packer.nvim packer.luarocks]]
 
-return require('packer').startup(function()
+local startup = require('packer').startup(function()
     use 'wbthomason/packer.nvim'
 
     use 'https://github.com/junegunn/vader.vim'
@@ -79,7 +91,34 @@ return require('packer').startup(function()
     use {
         "folke/which-key.nvim",
         config = function()
-            require("which-key").setup {}
+            local wk = require('which-key')
+            wk.setup {}
+            wk.register({
+                ['<leader>'] = {
+                    f = {
+                        name = "+file",
+                        f = {'<cmd>Telescope find_files<cr>', 'Find File'},
+                        g = {'<cmd>Telescope git_files<cr>', 'Find File in Git'}
+                    },
+                    l = {
+                        name = "+lsp",
+                        i = {'<cmd>LspInfo<cr>', 'LSP Info'},
+                        R = {'<cmd>LspRestart<cr>', 'LSP Restart'},
+                        d = {'<cmd>Telescope lsp_document_diagnostics<cr>', 'Diagnostics'},
+                        w = {'<cmd>Telescope lsp_workspace_diagnostics<cr>', 'Workspace Diagnostics'},
+                        r = {'<cmd>Telescope lsp_references<cr>', 'Find References'},
+                        g = {'<cmd>Telescope lsp_definitions<cr>', 'Go To Definition'},
+                        a = {'<cmd>Telescope lsp_code_actions<cr>', 'Code Actions'}
+                    }
+                }
+            })
         end
     }
 end)
+
+if fresh_install then
+    vim.api.nvim_exec('execute ":PackerInstall"', false)
+    -- TODO: Figure out how to call `:PackerCompile` after `:PackerInstall` returns
+end
+
+return startup
