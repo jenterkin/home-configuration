@@ -1,7 +1,11 @@
-vim.cmd [[packadd packer.nvim]]
+vim.cmd [[packadd packer.nvim packer.luarocks]]
 
 return require('packer').startup(function()
+    -- use_rocks 'lua-path'
+    use_rocks 'lua-path'
     use 'wbthomason/packer.nvim'
+
+    use 'https://github.com/junegunn/vader.vim'
 
     use 'dense-analysis/ale' -- TODO: look for lightweight auto-fixer
     use {
