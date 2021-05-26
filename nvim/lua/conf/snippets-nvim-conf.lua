@@ -2,7 +2,10 @@ require('packer').use {
     'norcalli/snippets.nvim',
     config = function()
         define_snippets()
-        define_keymaps()
+
+        -- <c-k> expand_or_advance(1)
+        -- <c-j> expand_snippet(-1)
+        require('snippets').use_suggested_mappings()
     end
 }
 
@@ -16,15 +19,4 @@ function define_snippets()
             todo = "TODO(jenterkin): "
         }
     }
-end
-
-function define_keymaps()
-    vim.api.nvim_set_keymap(
-        'n', '<c-k>', '<cmd>lua return require("snippets").expand_or_advance(1)<CR>',
-        {noremap = true, silent = true}
-    )
-    vim.api.nvim_set_keymap(
-        'n', '<c-j>', '<cmd>lua return require("snippets").expand_snippet(-1)<CR>',
-        {noremap = true, silent = true}
-    )
 end
