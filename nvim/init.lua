@@ -21,6 +21,7 @@ g.chadtree_settings = {theme = { text_colour_set = "nord" }}
 -- Open file at last position
 vim.cmd [[
 augroup lastpos
+    autocmd!
     autocmd BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | exe "normal! zz" | endif
 augroup END
 ]]

@@ -1,6 +1,15 @@
+-- Automatically compile on update on save and after install
+-- `BufEnter` is a hack to compile after install
+vim.cmd [[
+augroup updatepacker
+    autocmd!
+    autocmd BufWritePost,BufEnter plugins.lua PackerCompile
+augroup END
+]]
+
 -- Make sure packer.nvim is installed
 -- On initial install you will be met with an error. Hit enter and `:PackerInstall` will run.
--- You will still have to manually run `:PackerCompile`
+-- You will still have to manually run `:PackerCompile or save this file`
 local fn = vim.fn
 local fresh_install = false
 local install_path = fn.stdpath('data')..'/site/pack/packer/opt/packer.nvim'
@@ -116,7 +125,7 @@ local startup = require('packer').startup(function()
     }
 end)
 
-if fresh_install then
+if fresh_install == true then
     vim.api.nvim_exec('execute ":PackerInstall"', false)
     -- TODO: Figure out how to call `:PackerCompile` after `:PackerInstall` returns
 end
