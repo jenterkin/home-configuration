@@ -41,7 +41,6 @@ local make_startup = function()
             requires = {{'nvim-lua/popup.nvim'}, {'nvim-lua/plenary.nvim'}}
         }
         use {'neovim/nvim-lspconfig', config = function() vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc') end}
-        use {'ms-jpq/chadtree', branch = "chad", run = 'python3 -m chadtree deps'}
         use {'shaunsingh/nord.nvim', config = function() require('nord').set() end}
 
         use 'jenterkin/vim-autosource'
