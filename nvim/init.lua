@@ -30,3 +30,6 @@ vim.api.nvim_set_option('timeoutlen', 0)
 vim.g.mapleader = ','
 
 vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', {noremap = true})
+
+-- Clear highlighting on escape in normal mode
+vim.api.nvim_set_keymap('n', '<esc>', ':noh<return><esc>', {noremap = true, silent = true})
