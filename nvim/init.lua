@@ -41,6 +41,7 @@ wk.register({
         l = {
             name = "+lsp",
             i = {'<cmd>LspInfo<cr>', 'LSP Info'},
+	    R = {'<cmd>LspRestart<cr>', 'LSP Restart'},
             d = {'<cmd>Telescope lsp_document_diagnostics<cr>', 'Diagnostics'},
             w = {'<cmd>Telescope lsp_workspace_diagnostics<cr>', 'Workspace Diagnostics'},
 	    r = {'<cmd>Telescope lsp_references<cr>', 'Find References'},

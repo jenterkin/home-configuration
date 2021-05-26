@@ -1,11 +1,20 @@
 vim.cmd [[packadd packer.nvim packer.luarocks]]
 
 return require('packer').startup(function()
-    -- use_rocks 'lua-path'
-    use_rocks 'lua-path'
     use 'wbthomason/packer.nvim'
 
     use 'https://github.com/junegunn/vader.vim'
+
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config = function()
+            require('nvim-treesitter.configs').setup {
+                ensure_installed = 'maintained',
+                highlight = { enable = true }
+            }
+        end
+    }
 
     use 'dense-analysis/ale' -- TODO: look for lightweight auto-fixer
     use {
@@ -15,7 +24,9 @@ return require('packer').startup(function()
     use {'neovim/nvim-lspconfig', config = function() vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc') end}
     use {'ms-jpq/chadtree', branch = "chad", run = 'python3 -m chadtree deps'}
     use {'shaunsingh/nord.nvim', config = function() require('nord').set() end}
-    use '~/repos/vim-autosource'
+
+    use 'jenterkin/vim-autosource'
+
     use {'airblade/vim-gitgutter', config = function() vim.g.updatetime = 100 end}
     use {'vim-python/python-syntax', config = function() vim.g.python_highlight_all = 1 end}
     use {
