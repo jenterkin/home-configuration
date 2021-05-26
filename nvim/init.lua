@@ -29,4 +29,17 @@ augroup END
 vim.api.nvim_set_option('timeoutlen', 0)
 vim.g.mapleader = ','
 
-vim.api.nvim_set_keymap('n', '<leader>t', ':CHADopen<cr>', {noremap = true, silent = true})
+-- require global lsp integrations
+g.capabilities = vim.lsp.protocol.make_client_capabilities()
+g.capabilities.textDocument.completion.completionItem.snippetSupport = true
+g.capabilities.textDocument.completion.completionItem.resolveSupport = {
+  properties = {
+    'documentation',
+    'detail',
+    'additionalTextEdits',
+  }
+}
+
+require('lspconfig').bashls.setup{capabilities = g.capabilities}
+
+vim.api.nvim_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', {noremap = true})

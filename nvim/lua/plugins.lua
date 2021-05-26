@@ -35,6 +35,8 @@ local make_startup = function()
             end
         }
 
+        require 'snippets-nvim'
+
         use 'dense-analysis/ale' -- TODO: look for lightweight auto-fixer
         use {
             'nvim-telescope/telescope.nvim',
@@ -64,8 +66,10 @@ local make_startup = function()
                 require("trouble").setup{}
             end
         }
+
         use {
             'hrsh7th/nvim-compe',
+            requires = 'norcalli/snippets.nvim',
             config = function()
                 vim.o.completeopt = 'menuone,noselect'
                 require('compe').setup {
@@ -88,8 +92,7 @@ local make_startup = function()
                         calc = true,
                         nvim_lsp = true,
                         nvim_lua = true,
-                        vsnip = true,
-                        ultisnips = true
+                        snippets_nvim = true
                     }
                 }
             end
