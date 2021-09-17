@@ -23,7 +23,8 @@ require('packer').use {
                 calc = true,
                 nvim_lsp = true,
                 nvim_lua = true,
-                snippets_nvim = true
+                snippets_nvim = true,
+                orgmode = true
             }
         }
     end

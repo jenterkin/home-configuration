@@ -36,6 +36,7 @@ local make_startup = function()
             'dense-analysis/ale', -- TODO: look for lightweight auto-fixer
             'jenterkin/vim-autosource',
             'junegunn/vader.vim',
+	    'thoughtbot/vim-rspec',
         }
 
         use_local {
@@ -49,6 +50,9 @@ local make_startup = function()
             'trouble-conf',
             'compe-conf',
             'which-key-conf',
+            'orgmode-conf',
+            'org-bullets-conf',
+            'fugitive',
         }
     end)
 end
