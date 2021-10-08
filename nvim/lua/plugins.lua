@@ -33,26 +33,28 @@ local make_startup = function()
         use {
             'wbthomason/packer.nvim',
 
+	    'thoughtbot/vim-rspec',
             'dense-analysis/ale', -- TODO: look for lightweight auto-fixer
             'jenterkin/vim-autosource',
             'junegunn/vader.vim',
-	    'thoughtbot/vim-rspec',
+            'nvim-lua/plenary.nvim',
         }
 
         use_local {
+            'compe-conf',
+            'fugitive',
+            'gitgutter-conf',
             'lspconfig-conf',
+            'lualine-conf',
             'nord-conf',
             'snippets-nvim-conf',
             'telescope-conf',
             'treesitter-conf',
-            'gitgutter-conf',
-            'lualine-conf',
             'trouble-conf',
-            'compe-conf',
             'which-key-conf',
-            'orgmode-conf',
+            'neorg-conf',
             'org-bullets-conf',
-            'fugitive',
+            'orgmode-conf',
         }
     end)
 end

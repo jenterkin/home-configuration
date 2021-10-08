@@ -24,7 +24,8 @@ require('packer').use {
                 nvim_lsp = true,
                 nvim_lua = true,
                 snippets_nvim = true,
-                orgmode = true
+                orgmode = true,
+                neorg = true,
             }
         }
     end
