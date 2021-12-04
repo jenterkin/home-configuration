@@ -34,7 +34,7 @@ local make_startup = function()
             'wbthomason/packer.nvim',
 
 	    'thoughtbot/vim-rspec',
-            'dense-analysis/ale', -- TODO: look for lightweight auto-fixer
+            -- 'dense-analysis/ale', -- TODO: look for lightweight auto-fixer
             'jenterkin/vim-autosource',
             'junegunn/vader.vim',
             'nvim-lua/plenary.nvim',
