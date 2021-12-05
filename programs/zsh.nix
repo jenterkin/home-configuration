@@ -19,8 +19,6 @@
 
     dc = "docker-compose";
 
-    teedown-console = ''convox run web "APPOPTICS_SERVICE_KEY=dummy rails c" -r teespring/rails-staging -a teespring'';
-
     tn = "tmux new-session -s";
     ta = "tmux attach -t";
   };
@@ -39,11 +37,5 @@
     set -o vi
 
     source $HOME/.nix-profile/etc/profile.d/nix.sh
-
-    eval "$(rbenv init -)"
-
-    function rtrev () {
-        convox run web "APPOPTICS_SERVICE_KEY=dummy rails c" -r teespring/rails-staging -a "rails-teespring-$1"
-    }
   '';
 }
