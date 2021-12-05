@@ -6,6 +6,11 @@ pecho () {
     echo -e "\033[0m"
 }
 
+perror () {
+    echo -en "\033[1;31m"
+    echo -n ">>> ${1}"
+    echo -e "\033[0m"
+}
 
 if [[ ! $(which nix) ]]; then
     pecho "Installing Nix"
@@ -29,23 +34,26 @@ if [[ ! $(grep "experimental-features = nix-command flakes" ~/.config/nix/nix.co
     echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 fi
 
-script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-
-conf_dir="${XDG_CONFIG_HOME}"
-if [[ -z "${XDG_CONFIG_HOME}" ]]; then
-    conf_dir="${HOME}"/.config
-fi
-
-# Symlink home-manager config
-home_manager_path="${conf_dir}"/nixpkgs/home.nix
-
-pecho "Installing home-manager config to ${home_manager_path}"
-ln -s "${script_dir}"/home.nix "${home_manager_path}" &> /dev/null
-
 # Install home-manager if not found
 if [[ ! $(which home-manager) ]]; then
     echo hello
 fi
 
 pecho "Applying home-manager config"
-home-manager switch
+case "$(uname -s)" in
+    Linux) system=personalLinux;;
+    Darwin)
+        case "$(whoami)" in
+            jenterkin) system=personalDarwin;;
+            jordanenterkin) system=work;;
+            *) system="unknown";;
+        esac;;
+    *) system="unknown";;
+esac
+
+if [[ "${system}" = "unknown" ]]; then
+    perror "Unknown system. Verify that your OS and username are correct/supported."
+    exit
+fi
+
+home-manager switch --flake ~/repos/dot-files/#${system} -v

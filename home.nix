@@ -3,11 +3,6 @@
 {
   programs.home-manager.enable = true;
 
-  home.username = "jordanenterkin";
-  home.homeDirectory = "/Users/jordanenterkin";
-
-  home.stateVersion = "21.11";
-
   xdg.configFile = {
     nvim = {
       source = ./dot-files/nvim;
