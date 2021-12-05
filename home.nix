@@ -10,6 +10,13 @@
     };
   };
 
+  home.file = {
+    ".bin" = {
+      source = ./bin;
+      recursive = true;
+    };
+  };
+
   home.packages = with pkgs; [
     bat
     fd

@@ -5,7 +5,7 @@
   history.ignoreDups = true;
 
   envExtra = ''
-    export PATH=~/.local/bin:/usr/local/sbin
+    export PATH=~/.local/bin:/usr/local/sbin:~/.bin
     export TERM=xterm-256color
   '';
 
