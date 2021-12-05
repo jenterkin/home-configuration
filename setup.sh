@@ -7,29 +7,26 @@ pecho () {
 }
 
 
-# TODO: automate dep installation
-# Check requirements
-missing_deps=0
 if [[ ! $(which nix) ]]; then
-    pecho "Nix is not installed. Please install it and run this script again:"
-    pecho "    curl -L https://nixos.org/nix/install | sh"
+    pecho "Installing Nix"
+    curl -L https://nixos.org/nix/install | sh
     echo
-
-    missing_deps=1
 fi
 
 if [[ ! $(which home-manager) ]]; then
-    pecho "home-manager is not installed. Please install it and run this script again:"
-    pecho "    nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager"
-    pecho "    nix-channel --update"
-    pecho "    nix-shell '<home-manager>' -A install"
+    pecho "Installing home-manager"
+    export NIX_PATH=$HOME/.nix-defexpr/channels${NIX_PATH:+:}$NIX_PATH
+    nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+    nix-channel --update
+    nix-shell '<home-manager>' -A install
     echo
-
-    missing_deps=1
 fi
 
-if [[ missing_deps -eq 1 ]]; then
-    exit
+pecho "Ensuring flakes are enabled"
+
+if [[ ! $(grep "experimental-features = nix-command flakes" ~/.config/nix/nix.conf) ]]; then
+    nix-env -iA nixpkgs.nixFlakes
+    echo "experimental-features = nix-command flakes" >> ~/.config/nix/nix.conf
 fi
 
 script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
