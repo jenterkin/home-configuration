@@ -56,4 +56,4 @@ if [[ "${system}" = "unknown" ]]; then
     exit
 fi
 
-home-manager switch --flake ~/repos/dot-files/#${system} -v
+home-manager switch --flake ~/repos/home-configuration/#${system} -v
