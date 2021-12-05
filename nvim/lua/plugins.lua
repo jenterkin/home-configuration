@@ -52,9 +52,6 @@ local make_startup = function()
             'treesitter-conf',
             'trouble-conf',
             'which-key-conf',
-            'neorg-conf',
-            'org-bullets-conf',
-            'orgmode-conf',
         }
     end)
 end

@@ -1,13 +1,5 @@
 local parser_configs = require('nvim-treesitter.parsers').get_parser_configs()
 
-parser_configs.norg = {
-    install_info = {
-        url = "https://github.com/nvim-neorg/tree-sitter-norg",
-        files = { "src/parser.c", "src/scanner.cc" },
-        branch = "main"
-    },
-}
-
 require('packer').use {
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
@@ -19,7 +11,6 @@ require('packer').use {
                 'javascript',
                 'ruby',
                 'bash',
-                'norg',
             },
 	    highlight = { enable = true }
 	}
