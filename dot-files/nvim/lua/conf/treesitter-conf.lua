@@ -6,11 +6,12 @@ require('packer').use {
     config = function()
 	require('nvim-treesitter.configs').setup {
 	    ensure_installed = {
-                'python',
-                'typescript',
-                'javascript',
-                'ruby',
                 'bash',
+                'javascript',
+                'nix',
+                'python',
+                'ruby',
+                'typescript',
             },
 	    highlight = { enable = true }
 	}

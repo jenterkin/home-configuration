@@ -38,6 +38,7 @@ local make_startup = function()
             'jenterkin/vim-autosource',
             'junegunn/vader.vim',
             'nvim-lua/plenary.nvim',
+	    'zah/nim.vim',
         }
 
         use_local {
