@@ -8,6 +8,11 @@
       source = ./dot-files/nvim;
       recursive = true;
     };
+
+    direnv = {
+      source = ./dot-files/direnv;
+      recursive = true;
+    };
   };
 
   home.file = {
