@@ -5,7 +5,7 @@
   history.ignoreDups = true;
 
   envExtra = ''
-    export PATH=~/.local/bin:/usr/local/sbin:~/.bin
+    export PATH=~/.local/bin:/usr/local/sbin:~/.bin:~/.cargo/bin
     export TERM=xterm-256color
   '';
 
@@ -37,5 +37,10 @@
     set -o vi
 
     source $HOME/.nix-profile/etc/profile.d/nix.sh
+
+    # Load extra configs that I don't want checked into version control
+    if [[ -f ~/.zsh_extra ]]; then
+        source ~/.zsh_extra
+    fi
   '';
 }

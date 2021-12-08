@@ -25,11 +25,13 @@
   home.packages = with pkgs; [
     bat
     fd
+    gh
     git
     jq
     neovim
     ripgrep
     tmux
+    wget
   ];
 
   programs = {

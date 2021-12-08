@@ -5,9 +5,10 @@
       flake-utils.url = "github:numtide/flake-utils";
       home-manager.url = "github:nix-community/home-manager";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
+      svox.url = "path:/Users/jordanenterkin/repos/svox";
     };
 
-  outputs = { self, nixpkgs, flake-utils, home-manager, ... }:
+  outputs = { self, nixpkgs, flake-utils, home-manager, svox, ... }:
     flake-utils.lib.eachDefaultSystem
       (system:
         let
@@ -44,6 +45,10 @@
           homeDirectory = "/Users/jordanenterkin";
           stateVersion = "21.11";
           configuration.imports = [ ./home.nix ];
+          configuration.home.packages = [
+            svox.defaultPackage.x86_64-darwin
+            nixpkgs.legacyPackages.x86_64-darwin.rbenv
+          ];
         };
       };
     };
