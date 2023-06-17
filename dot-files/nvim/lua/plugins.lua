@@ -39,6 +39,7 @@ local make_startup = function()
             'junegunn/vader.vim',
             'nvim-lua/plenary.nvim',
 	    'zah/nim.vim',
+            'mattn/efm-langserver', -- for when default lsps aren't enough :(
         }
 
         use_local {
