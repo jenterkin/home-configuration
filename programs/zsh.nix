@@ -5,7 +5,7 @@
   history.ignoreDups = true;
 
   envExtra = ''
-    export PATH=~/.local/bin:/usr/local/sbin:~/.bin:~/.cargo/bin:~/.local/share/flutter/bin:~/.local/share/sdkmanager/bin
+    export PATH=$PATH:~/.local/bin:/usr/local/sbin:~/.bin:~/.cargo/bin:~/.local/share/flutter/bin:~/.local/share/sdkmanager/bin
     export TERM=xterm-256color
   '';
 

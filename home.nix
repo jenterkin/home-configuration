@@ -2,7 +2,35 @@
 
 {
   programs.home-manager.enable = true;
-  home.stateVersion = "23.05";
+
+  home = {
+    stateVersion = "23.05";
+    username = "jenterkin";
+    homeDirectory = "/home/jenterkin";
+    file = {
+      ".bin" = {
+        source = ./bin;
+        recursive = true;
+      };
+    };
+
+    packages = with pkgs; [
+      bat
+      fd
+      ffmpeg
+      gcc
+      gh
+      gifsicle
+      git
+      jq
+      neovim
+      nixops_unstable
+      ripgrep
+      rnix-lsp
+      tree
+      wget
+    ];
+  };
 
   xdg.configFile = {
     alacritty = {
@@ -21,28 +49,6 @@
     };
   };
 
-  home.file = {
-    ".bin" = {
-      source = ./bin;
-      recursive = true;
-    };
-  };
-
-  home.packages = with pkgs; [
-    bat
-    fd
-    ffmpeg
-    gh
-    gifsicle
-    git
-    jq
-    neovim
-    nixops_unstable
-    ripgrep
-    rnix-lsp
-    tree
-    wget
-  ];
 
   programs = {
     direnv = import ./programs/direnv.nix;

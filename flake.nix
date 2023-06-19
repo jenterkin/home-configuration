@@ -3,7 +3,7 @@
     {
       # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
       nixpkgs.url = "nixpkgs/nixos-23.05";
-      home-manager.url = "github:nix-community/home-manager";
+      home-manager.url = "github:nix-community/home-manager/release-23.05";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -14,27 +14,12 @@
     homeConfigurations = {
       personalDarwin = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs.legacyPackages.x86_64-darwin;
-        modules = [
-          ./home.nix
-          {
-            home = {
-              username = "jenterkin";
-              homeDirectory = "/Users/jenterkin";
-            };
-          }
-        ];
+        modules = [ ./home.nix ];
       };
 
       personalLinux = inputs.home-manager.lib.homeManagerConfiguration {
-        pkgs = inputs.nixpkgs.legacyPackages.x86_64-darwin;
-        modules = [
-          ./home.nix
-          {
-            system = "x86_64-linux";
-            username = "jenterkin";
-            homeDirectory = "/home/jenterkin";
-          }
-        ];
+        pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
+        modules = [ ./home.nix ];
       };
     };
   };
