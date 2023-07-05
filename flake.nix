@@ -14,7 +14,10 @@
     homeConfigurations = {
       personalDarwin = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs.legacyPackages.x86_64-darwin;
-        modules = [ ./home.nix ];
+        modules = [
+          ./home.nix
+          ./darwin.nix
+        ];
       };
 
       personalLinux = inputs.home-manager.lib.homeManagerConfiguration {

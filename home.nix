@@ -6,7 +6,7 @@
   home = {
     stateVersion = "23.05";
     username = "jenterkin";
-    homeDirectory = "/home/jenterkin";
+
     file = {
       ".bin" = {
         source = ./bin;
