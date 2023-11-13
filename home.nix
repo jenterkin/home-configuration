@@ -66,6 +66,21 @@
       source = ./dot-files/nvim;
       recursive = true;
     };
+
+    waybar = {
+      source = ./dot-files/waybar;
+      recursive = true;
+    };
+
+    hypr = {
+      source = ./dot-files/hypr;
+      recursive = true;
+    };
+
+    tofi = {
+      source = ./dot-files/tofi;
+      recursive = true;
+    };
   };
 
 
