@@ -1,7 +1,7 @@
 {
   enable = true;
   dotDir = "./config/zsh";
-  enableSyntaxHighlighting = true;
+  syntaxHighlighting.enable = true;
   history.ignoreDups = true;
 
   envExtra = ''
