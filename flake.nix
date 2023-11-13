@@ -2,9 +2,10 @@
   inputs =
     {
       # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-      nixpkgs.url = "nixpkgs/nixos-23.05";
-      home-manager.url = "github:nix-community/home-manager/release-23.05";
+      nixpkgs.url = "nixpkgs/nixos-unstable";
+      home-manager.url = "github:nix-community/home-manager";
       home-manager.inputs.nixpkgs.follows = "nixpkgs";
+      ags.url = "github:Aylur/ags";
     };
 
   outputs = inputs: {
@@ -22,7 +23,15 @@
 
       personalLinux = inputs.home-manager.lib.homeManagerConfiguration {
         pkgs = inputs.nixpkgs.legacyPackages.x86_64-linux;
-        modules = [ ./home.nix ];
+        extraSpecialArgs = { inherit inputs; };
+        modules = [
+          {
+            nixpkgs.config.allowUnfree = true;
+            nixpkgs.config.allowUnfreePredicate = _: true;
+          }
+          ./home.nix
+          ./linux.nix
+        ];
       };
     };
   };

@@ -1,10 +1,13 @@
-{ config, pkgs, ... }:
+{ inputs, pkgs, ... }:
 
 {
+  imports = [ inputs.ags.homeManagerModules.default ];
+
   programs.home-manager.enable = true;
+  nixpkgs.config.allowUnfree = true;
 
   home = {
-    stateVersion = "23.05";
+    stateVersion = "23.11";
     username = "jenterkin";
 
     file = {
@@ -29,6 +32,22 @@
       rnix-lsp
       tree
       wget
+
+      firefox
+      alacritty
+      nerdfonts
+      powerline-fonts
+      discord
+      slack
+      tofi
+      killall
+      brave
+      waybar
+      neofetch
+      grimblast
+      wlr-randr
+      entr
+      dig
     ];
   };
 
@@ -50,6 +69,11 @@
   };
 
 
+  services.mako = {
+    enable = true;
+    defaultTimeout = 4000;
+  };
+
   programs = {
     direnv = import ./programs/direnv.nix;
     zsh = import ./programs/zsh.nix;
@@ -66,5 +90,7 @@
         }
       ];
     };
+
+    ags.enable = true;
   };
 }
